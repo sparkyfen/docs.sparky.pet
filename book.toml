@@ -9,10 +9,12 @@ title = "sparky.pet documentation"
 build-dir = "book"
 
 [output.html]
-default-theme = "dark"
+default-theme = "coal"
 preferred-dark-theme = "navy"
 git-repository-url = "https://github.com/sparkyfen/docs.sparky.pet"
 edit-url-template = "https://github.com/sparkyfen/docs.sparky.pet/edit/main/{path}"
+additional-css = ["./mdbook-admonish.css", "./theme/preferences.css"]
+additional-js = ["./theme/namevar.js"]
 
 [output.html.fold]
 enable = true
@@ -23,6 +25,7 @@ enable = true
 
 [preprocessor.admonish]
 command = "mdbook-admonish"
+assets_version = "3.1.0" # do not edit: managed by `mdbook-admonish install`
 
 [output.html.playground]
 editable = true
