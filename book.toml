@@ -1,0 +1,29 @@
+[book]
+authors = ["sparky"]
+language = "en"
+multilingual = false
+src = "src"
+title = "sparky.pet documentation"
+
+[build]
+build-dir = "book"
+
+[output.html]
+default-theme = "dark"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/sparkyfen/docs.sparky.pet"
+edit-url-template = "https://github.com/sparkyfen/docs.sparky.pet/edit/main/{path}"
+
+[output.html.fold]
+enable = true
+level = 0
+
+[output.html.search]
+enable = true
+
+[preprocessor.admonish]
+command = "mdbook-admonish"
+
+[output.html.playground]
+editable = true
+copyable = true
