@@ -5,6 +5,11 @@
   display: none;
 }
 
+/* Hide the book title in the sidebar */
+.sidebar .sidebar-scrollbox > .menu-title {
+  display: none;
+}
+
 /* Preferences container */
 .preferences {
   display: flex;
