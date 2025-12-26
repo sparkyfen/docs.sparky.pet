@@ -1,0 +1,4 @@
+creation_rules:
+  - path_regex: src/encrypted/.*
+    age: >-
+      age1wj6kj7ludhpmrm6g0klk28yw6jvz58gg2yzgk3lp0q7wf0tc93xq75k326

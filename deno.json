@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": ["esnext", "dom", "dom.iterable", "deno.window"],
+    "noFallthroughCasesInSwitch": true
+  },
+  "imports": {
+    "#/": "./",
+    "@std/streams": "jsr:@std/streams@^1"
+  },
+  "tasks": {
+    "encrypt": "deno run -A preprocessors/encrypt.ts"
+  }
+}

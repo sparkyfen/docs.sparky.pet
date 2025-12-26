@@ -30,6 +30,10 @@
             dart-sass
             esbuild
 
+            # Encryption tools
+            age
+            sops
+
             # Code formatting
             nixfmt-rfc-style
             prettier

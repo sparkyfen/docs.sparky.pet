@@ -57,7 +57,7 @@ Keep in mind that because [Sparky] provides this guide, [he] may be incomplete o
 
 ### Emergency Contact
 
-*Emergency contact information will be added here.*
+Emergency contact information is available on the [Emergency Contacts](reference/emergency.md) page (requires encryption key).
 
 ## Understanding
 

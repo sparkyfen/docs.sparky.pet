@@ -18,3 +18,5 @@
 
 - [Quick Facts](./reference/quick-facts.md)
 - [FAQ](./reference/faq.md)
+- [Tagging and Encryption](./reference/tagging-encryption.md)
+- [Emergency Contacts](./reference/emergency.md)
