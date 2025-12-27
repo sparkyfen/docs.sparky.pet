@@ -1,55 +1,50 @@
 {
-  description = "Documentation for sparky.pet";
-
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+
+    libdb.url = "github:sparkyfen/docs.sparky.pet";
+    libdb.inputs.nixpkgs.follows = "nixpkgs";
+    libdb.inputs.flake-utils.follows = "flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      libdb,
+    }@inputs:
+
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
+        lib = pkgs.lib;
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
         devShells.default = pkgs.mkShell {
-          name = "docs-sparky-pet";
+          name = "sparkyfen-docs";
 
           packages = with pkgs; [
-            # Task runner
-            just
-
-            # Documentation tools
-            mdbook
-            mdbook-admonish
-
-            # JavaScript/TypeScript runtime for custom tooling
-            deno
-
-            # Build tools
-            dart-sass
-            esbuild
-
-            # Encryption tools
             age
             sops
+            just
+            deno
+            dart-sass
+            esbuild
+            mdbook
+            mdbook-admonish
+            lowdown
 
-            # Code formatting
             nixfmt-rfc-style
-            prettier
+            nodePackages.prettier
+            languagetool
           ];
 
-          shellHook = ''
-            echo "Welcome to docs.sparky.pet development environment!"
-            echo "Available commands:"
-            echo "  just build  - Build documentation"
-            echo "  just serve  - Start development server"
-            echo "  just clean  - Clean build artifacts"
-          '';
-
-          # Environment variables
-          ESBUILD_BINARY_PATH = "${pkgs.esbuild}/bin/esbuild";
+          ESBUILD_BINARY_PATH = lib.getExe pkgs.esbuild;
           DENO_NO_UPDATE_CHECK = "1";
         };
-      });
+      }
+    );
 }

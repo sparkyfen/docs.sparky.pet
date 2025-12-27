@@ -3,18 +3,33 @@ authors = ["sparky"]
 language = "en"
 multilingual = false
 src = "src"
-title = "sparky.pet documentation"
+title = "User Guide for Sparky"
+description = "This user guide is designed to help you understand the basics of operating, interacting with, and using Sparky. These docs are maintained by Sparky himself."
 
 [build]
 build-dir = "book"
+create-missing = false
+extra-watch-dirs = ["scripts", "preprocessors"]
+use-default-preprocessors = false
 
 [output.html]
 default-theme = "coal"
 preferred-dark-theme = "navy"
+smart-punctuation = true
+copy-fonts = false
+additional-css = [
+  "theme/mdbook-admonish.css",
+  "theme/dist/styles.css",
+  # "theme/dist/styles.css.map",
+]
+additional-js = [
+  "scripts/dist/index.js",
+  "scripts/dist/index.js.map",
+  "scripts/dist/subsectionindex.json"
+]
 git-repository-url = "https://github.com/sparkyfen/docs.sparky.pet"
+git-repository-icon = "fa-github"
 edit-url-template = "https://github.com/sparkyfen/docs.sparky.pet/edit/main/{path}"
-additional-css = ["./mdbook-admonish.css", "./theme/preferences.css"]
-additional-js = ["./theme/namevar.js", "./theme/encryption.js"]
 
 [output.html.fold]
 enable = true
@@ -23,13 +38,32 @@ level = 0
 [output.html.search]
 enable = true
 
+[output.markdown]
+
+[output.terminal]
+command = "renderers/mdbook-terminal.ts"
+base_url = "https://docs.sparky.pet/formats/terminal"
+
 [preprocessor.admonish]
 command = "mdbook-admonish"
-assets_version = "3.1.0" # do not edit: managed by `mdbook-admonish install`
+assets_version = "3.0.2" # do not edit: managed by `mdbook-admonish install`
+after = ["encrypt"]
+
+[preprocessor.index]
+
+[preprocessor.toc-summary]
+command = "preprocessors/toc-summary.ts"
+after = ["index"]
+
+[preprocessor.scss]
+command = "preprocessors/scss.ts"
+
+[preprocessor.scripts]
+command = "preprocessors/scripts.ts"
+
+[preprocessor.namevar]
+command = "preprocessors/namevar.ts"
+after = ["toc-summary", "scripts", "encrypt"]
 
 [preprocessor.encrypt]
 command = "preprocessors/encrypt.ts"
-
-[output.html.playground]
-editable = true
-copyable = true

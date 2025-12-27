@@ -1,0 +1,49 @@
+[1;91m[0m[1;91mTagging and Encryption[0m
+
+    Some content in this documentation is encrypted for privacy and
+    security. This page explains how the encryption system works.
+
+[1;36m## [0m[1;36mWhat is Encrypted?[0m
+
+    Certain sensitive information, such as emergency contacts, medical
+    information, and other private details, are encrypted to protect
+    [Sparky]�s privacy.
+
+[1;36m## [0m[1;36mHow Encryption Works[0m
+
+    This documentation uses a two-layer encryption approach:
+
+    [93m 1. [0m[1mVersion Control Encryption (SOPS)[0m: Files are encrypted with [1;93mSOPS[0m [0m
+        [4;32mhttps://github.com/getsops/sops[0m using [1;93mage[0m [0m
+        [4;32mhttps://age-encryption.org/[0m encryption for secure storage in the
+        git repository.
+    
+    [93m 2. [0m[1mBrowser Encryption (AES-GCM)[0m: During the build process, the
+        content is re-encrypted using AES-GCM encryption so it can be
+        decrypted in your browser with the right key.
+
+[1;36m## [0m[1;36mHow to Access Encrypted Content[0m
+
+    To view encrypted content, you need the encryption key. If you�ve been
+    given the key:
+
+    [93m 1. [0m[1mURL Parameter[0m: Add [1;94m?key=YOUR_KEY_HERE[0m to the URL of any page 
+        [93m  · [0mExample: [0m
+            [1;94mhttps://docs.sparky.pet/reference/emergency.html?key=YOUR_KEY_HERE[0m
+    [93m 2. [0m[1mSession Storage[0m: Once you�ve accessed a page with the key
+        parameter, it�s stored in your browser�s session storage and will
+        work for all encrypted content during that session. 
+
+[1;36m## [0m[1;36mSecurity Notes[0m
+
+    [93m  · [0mThe encryption key is stored in your browser�s session storage
+        (not persisted across browser restarts) 
+    [93m  · [0mAll decryption happens client-side in your browser 
+    [93m  · [0mThe decryption key is never sent to any server 
+    [93m  · [0mIf you don�t have the key, you cannot access the encrypted content
+
+[1;36m## [0m[1;36mGetting Access[0m
+
+    If you need access to encrypted content (such as in an emergency
+    situation), please contact [Sparky] through available communication
+    channels.

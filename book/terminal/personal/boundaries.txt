@@ -1,0 +1,23 @@
+[1;91m[0m[1;91mTriggers & Boundaries[0m
+
+    [93m  | [0mImportant boundaries and things to be aware of
+
+[1;36m## [0m[1;36mOverview[0m
+
+    This section covers triggers, boundaries, and sensitive topics.
+
+[1;36m## [0m[1;36mHard Boundaries[0m
+
+    [3mTo be filled in[0m
+
+[1;36m## [0m[1;36mSoft Boundaries[0m
+
+    [3mTo be filled in[0m
+
+[1;36m## [0m[1;36mTriggers[0m
+
+    [3mTo be filled in[0m
+
+[1;36m## [0m[1;36mHow to Handle Boundary Violations[0m
+
+    [3mTo be filled in[0m

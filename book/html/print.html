@@ -1,0 +1,535 @@
+<!DOCTYPE HTML>
+<html lang="en" class="coal" dir="ltr">
+  <head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <title>User Guide for Sparky</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta name="description" content="This user guide is designed to help you understand the basics of operating, interacting with, and using Sparky. These docs are maintained by Sparky himself.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="og:title" content="User Guide for Sparky">
+    <meta name="og:description" content="This user guide is designed to help you understand the basics of operating, interacting with, and using Sparky. These docs are maintained by Sparky himself.">
+
+    <link rel="icon" href="favicon.svg">
+
+    <link rel="shortcut icon" href="favicon.png">
+
+    <!-- Normalize.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@3.0.0/modern-normalize.min.css">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/chrome.css">
+
+    <link rel="stylesheet" href="css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <link rel="stylesheet" href="fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="highlight.css">
+    <link rel="stylesheet" href="tomorrow-night.css">
+    <link rel="stylesheet" href="ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="theme/mdbook-admonish.css">
+    <link rel="stylesheet" href="theme/dist/styles.css">
+  </head>
+  <body class="sidebar-visible no-js">
+  <div id="body-container">
+    <!-- Provide site root to javascript -->
+    <script>
+      var path_to_root = "";
+      var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "coal";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script>
+      try {
+        var theme = localStorage.getItem('mdbook-theme');
+        var sidebar = localStorage.getItem('mdbook-sidebar');
+
+        if (theme.startsWith('"') && theme.endsWith('"')) {
+          localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+        }
+
+        if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+          localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+        }
+      } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script>
+      var theme;
+      try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+      if (theme === null || theme === undefined) { theme = default_theme; }
+      var html = document.querySelector('html');
+      html.classList.remove('coal')
+      html.classList.add(theme);
+      var body = document.querySelector('body');
+      body.classList.remove('no-js')
+      body.classList.add('js');
+    </script>
+
+    <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+    <script>
+      (function() {
+        let body = document.querySelector('body');
+        let sidebar = null;
+        let sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+
+        function updateSidebar() {
+          sidebar = document.body.clientWidth >= 1080 ? 'visible' : 'hidden';
+          sidebar_toggle.checked = sidebar === 'visible';
+          body.classList.remove('sidebar-visible');
+          body.classList.remove('sidebar-hidden');
+          body.classList.add("sidebar-" + sidebar);
+          body.classList.toggle("sidebar-collapsible", sidebar == 'hidden')
+        }
+
+        updateSidebar();
+        window.addEventListener('resize', updateSidebar);
+      })()
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+      <div class="sidebar-scrollbox">
+        <ol class="chapter"><li class="chapter-item affix "><a href="index.html">Introduction</a></li><li class="chapter-item affix "><li class="part-title">Interacting</li><li class="chapter-item "><a href="interacting/caring.html"><strong aria-hidden="true">1.</strong> Caring</a></li><li class="chapter-item "><a href="interacting/trusting.html"><strong aria-hidden="true">2.</strong> Trusting</a></li><li class="chapter-item "><a href="interacting/communicating.html"><strong aria-hidden="true">3.</strong> Communicating</a></li><li class="chapter-item affix "><li class="part-title">Personal</li><li class="chapter-item "><a href="personal/hobbies.html"><strong aria-hidden="true">4.</strong> Hobbies</a></li><li class="chapter-item "><a href="personal/preferences.html"><strong aria-hidden="true">5.</strong> Preferences</a></li><li class="chapter-item "><a href="personal/boundaries.html"><strong aria-hidden="true">6.</strong> Triggers & Boundaries</a></li><li class="chapter-item affix "><li class="part-title">Reference</li><li class="chapter-item "><a href="reference/quick-facts.html"><strong aria-hidden="true">7.</strong> Quick Facts</a></li><li class="chapter-item "><a href="reference/faq.html"><strong aria-hidden="true">8.</strong> FAQ</a></li><li class="chapter-item "><a href="reference/tagging-encryption.html"><strong aria-hidden="true">9.</strong> Tagging and Encryption</a></li><li class="chapter-item "><a href="reference/emergency.html"><strong aria-hidden="true">10.</strong> Emergency Contacts</a></li></ol>
+      </div>
+      <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+        <div class="sidebar-resize-indicator"></div>
+      </div>
+    </nav>
+
+    <!-- Track and set sidebar scroll position -->
+    <script>
+      var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+      sidebarScrollbox.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') {
+          sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+        }
+      }, { passive: true });
+
+      var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+      sessionStorage.removeItem('sidebar-scroll');
+      if (sidebarScrollTop) {
+        // preserve sidebar scroll position when navigating via links within sidebar
+        sidebarScrollbox.scrollTop = sidebarScrollTop;
+      } else {
+        // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+        var activeSection = document.querySelector('#sidebar .active');
+        if (activeSection) {
+          activeSection.scrollIntoView({ block: 'center' });
+        }
+      }
+    </script>
+
+    <dialog id="content-alert" open>
+      <div class="warning">
+        <p class="title"><strong>Warning</strong>:</p>
+        <p>This guide contains sensitive information about Diamond that may be considered
+        mature, explicit/18+, or triggering. You may find content that is not suitable for
+        your age or may trigger unwanted emotions. <strong>Please proceed with caution.</strong></p>
+        <p><strong>Consent is important.</strong> If you are unsure about something, it is always best
+        to ask Diamond directly.</p>
+        <p><strong>Trigger warning</strong>: sexually explicit content, self-harm, mental health issues,
+        dubious consent, and more.</p>
+        <p class="require-javascript">By continuing, you acknowledge that you have read and understood this warning.</p>
+
+        <noscript>
+          <hr>
+
+          <strong>JavaScript is disabled in your browser.</strong>
+          <p>This book contains interactive content that requires JavaScript to
+          function properly. Unfortunately, you will not be able to view this content
+          without enabling JavaScript.</p>
+        </noscript>
+      </div>
+
+      <footer class="require-javascript">
+        <button id="content-alert-back" class="primary-button" title="Go back" aria-label="Go back" onclick="respondContentAlert(false)">
+          <i class="fa fa-arrow-left"></i>
+          <span>Go back</span>
+        </button>
+        <button id="content-alert-continue" title="Continue" aria-label="Continue" onclick="respondContentAlert(true)">
+          <span>Continue</span>
+          <span id="content-alert-countdown"></span>
+          <i class="fa fa-arrow-right"></i>
+        </button>
+      </footer>
+    </dialog>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+      <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+        <div id="menu-bar" class="menu-bar sticky">
+          <div class="left-buttons">
+            <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+              <i class="fa fa-bars"></i>
+            </label>
+            <a role="button" href="" title="Home" aria-label="Home">
+              <i class="fa fa-home"></i>
+            </a>
+          </div>
+
+          <div class="center menu-title"></div>
+
+          <div class="right-buttons">
+            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+              <i class="fa fa-paint-brush"></i>
+            </button>
+            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+              <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+            </ul>
+            <a href="https://github.com/sparkyfen/docs.sparky.pet" title="Git repository" aria-label="Git repository">
+              <i id="git-repository-button" class="fa fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div id="shadow-overlay"></div>
+
+        <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+        <script>
+          document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+          document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+          Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+            link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+          });
+        </script>
+
+        <div id="content" class="content">
+          <main>
+            <aside class="toc">
+              <nav class="pagetoc"></nav>
+            </aside>
+            <div class="content-wrap">
+              <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>This user guide is designed to help you understand the basics of operating, interacting with, and using <span class="namevar" data-namevar="identifier">Sparky</span>. These docs are maintained by <span class="namevar" data-namevar="identifier">Sparky</span> <span class="namevar" data-namevar="pronouns">himself</span>.</p>
+<div id="admonition-content-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-content-warning-title">
+<div class="admonition-title">
+<div id="admonition-content-warning-title">
+<p>Content Warning</p>
+</div>
+<a class="admonition-anchor-link" href="index.html#admonition-content-warning"></a>
+</div>
+<div>
+<p>This guide contains sensitive information about <span class="namevar" data-namevar="identifier">Sparky</span> that may be considered mature, explicit, or triggering. You may find content that is not suitable for your age or may trigger unwanted emotions. Please proceed with caution.</p>
+<p>Consent is important. If you are unsure about something, it is always best to ask <span class="namevar" data-namevar="identifier">Sparky</span> directly.</p>
+<p><strong>Trigger warning:</strong> sexually explicit content, mental health issues, dubious consent, and more.</p>
+</div>
+</div>
+<div id="admonition-new-to-this-guide" class="admonition admonish-note" role="note" aria-labelledby="admonition-new-to-this-guide-title">
+<div class="admonition-title">
+<div id="admonition-new-to-this-guide-title">
+<p>New to this guide?</p>
+</div>
+<a class="admonition-anchor-link" href="index.html#admonition-new-to-this-guide"></a>
+</div>
+<div>
+<p>This guide lets you change how it refers to <span class="namevar" data-namevar="identifier">Sparky</span>. You can change the name used in this guide to better suit your preferences or context. For example, you can use “Adam” for professional settings.</p>
+<p>To do this, see the <a href="index.html#preferences">Preferences</a> section at the bottom of this page.</p>
+</div>
+</div>
+<h2 id="what-is-sparky"><a class="header" href="#what-is-sparky">What is <span class="namevar" data-namevar="identifier">Sparky</span>?</a></h2>
+<p><span class="namevar" data-namevar="identifier">Sparky</span> self-describes <span class="namevar" data-namevar="pronouns">himself</span> as a “fox” or “fen” to most people that <span class="namevar" data-namevar="pronouns">he</span> doesn’t know and sometimes a “flompy”, “fen”, “fop” to people whom <span class="namevar" data-namevar="pronouns">he</span> trusts. <span class="namevar" data-namevar="identifier">Sparky</span> may choose to identify <span class="namevar" data-namevar="pronouns">himself</span> as any of the above or something else.</p>
+<p>For more information, <span class="namevar" data-namevar="identifier">Sparky</span> provides other websites that you can use for reference:</p>
+<ul>
+<li><a href="https://sparky.social">sparky.social</a>: <span class="namevar" data-namevar="pronouns">his</span> official website</li>
+</ul>
+<h2 id="purpose"><a class="header" href="#purpose">Purpose</a></h2>
+<p>This guide was created to help you, the reader, in handling, operating and interacting with <span class="namevar" data-namevar="identifier">Sparky</span>. Many items documented in this guide would potentially take years for someone to discover and understand of <span class="namevar" data-namevar="identifier">Sparky</span>. For this reason, <span class="namevar" data-namevar="identifier">Sparky</span> has provided this guide to you.</p>
+<p>Keep in mind that because <span class="namevar" data-namevar="identifier">Sparky</span> provides this guide, <span class="namevar" data-namevar="pronouns">he</span> may be incomplete or subject to bias. <span class="namevar" data-namevar="identifier">Sparky</span> is constantly learning and updating <span class="namevar" data-namevar="pronouns">himself</span>, so <span class="namevar" data-namevar="pronouns">he</span> may not always be up-to-date. <span class="namevar" data-namevar="identifier">Sparky</span> also has the ability to change <span class="namevar" data-namevar="pronouns">his</span> own documentation and may not notify you of changes. <span class="namevar" data-namevar="identifier">Sparky</span> is always learning and updating <span class="namevar" data-namevar="pronouns">himself</span>, so this doc may not always be up-to-date.</p>
+<h3 id="information"><a class="header" href="#information">Information</a></h3>
+<div id="information-table">
+<div class="table-wrapper"><table><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody>
+<tr><td>Identifiers</td><td><span class="namevar" data-namevar="identifier">Sparky</span> (name), flompy (handle) <a href="index.html#preferences-identifier">[change]</a></td></tr>
+<tr><td>Pronouns</td><td>he/him</td></tr>
+<tr><td>Orientation</td><td>Pansexual</td></tr>
+<tr><td>Height</td><td>167 cm (~5’6“)</td></tr>
+<tr><td>Weight</td><td>79 kg (~175 lbs) (may vary)</td></tr>
+<tr><td>Hair color</td><td>Black</td></tr>
+</tbody></table>
+</div></div>
+<h3 id="proper-pronoun-usage"><a class="header" href="#proper-pronoun-usage">Proper Pronoun Usage</a></h3>
+<p><span class="namevar" data-namevar="identifier">Sparky</span> chooses to go by <strong>he/him</strong> pronouns all of the time.</p>
+<h3 id="gender-orientation"><a class="header" href="#gender-orientation">Gender Orientation</a></h3>
+<p><span class="namevar" data-namevar="identifier">Sparky</span> is a pansexual entity. This means that <span class="namevar" data-namevar="identifier">Sparky</span> is attracted to people of either (or any, regardless of) gender.</p>
+<p><span class="namevar" data-namevar="identifier">Sparky</span> is also in an open relationship and is learning about poly. This means that <span class="namevar" data-namevar="identifier">Sparky</span> is capable of being in multiple romantic relationships at the same time. Keep in mind that <span class="namevar" data-namevar="identifier">Sparky</span>’s partner is also open but is not necessarily poly.</p>
+<h3 id="emergency-contact"><a class="header" href="#emergency-contact">Emergency Contact</a></h3>
+<p>Emergency contact information is available on the <a href="reference/emergency.html">Emergency Contacts</a> page (requires encryption key).</p>
+<h2 id="understanding"><a class="header" href="#understanding">Understanding</a></h2>
+<p>This guide is broken down into several sections that describe different aspects of interacting with <span class="namevar" data-namevar="identifier">Sparky</span>. Some of these sections include <a href="interacting/caring.html">Caring</a>, which describes how to take care of <span class="namevar" data-namevar="identifier">Sparky</span>, or <a href="interacting/trusting.html">Trusting</a>, which describes how to build trust with <span class="namevar" data-namevar="identifier">Sparky</span>. These sections can be found in the sidebar on the left of this guide.</p>
+<hr />
+<h2 id="preferences"><a class="header" href="#preferences">Preferences</a></h2>
+<p>This documentation allows you to modify how it refers to <span class="namevar" data-namevar="identifier">Sparky</span> throughout the guide. You can change the name to better suit your preferences or context. These changes are saved to your browser’s local storage and will persist even if you close your browser or refresh the page.</p>
+<p>Please note that these settings are only saved to your browser and will not affect other users or devices.</p>
+<div class="require-javascript">
+<div class="namevar-preview">
+<strong>His</strong> name is <strong><span class="namevar" data-namevar="identifier">Sparky</span></strong>, and <strong>he</strong> goes by <strong>he/him</strong> pronouns.
+</div>
+<h3 id="presets"><a class="header" href="#presets">Presets</a></h3>
+<p>These variable presets are provided for your convenience:</p>
+<fieldset id="presets" class="preferences">
+  <label class="preset">
+    <strong>Default</strong>
+    <p>The default settings (uses "<span class="namevar" data-namevar="identifier">Sparky</span>").</p>
+    <input type="radio" name="preset" value="default"/>
+  </label>
+  <label class="preset">
+    <strong>Professional</strong>
+    <p>For professional or formal settings (uses "Adam").</p>
+    <input type="radio" name="preset" value="professional" />
+  </label>
+</fieldset>
+<h3 id="variables"><a class="header" href="#variables">Variables</a></h3>
+<p>For more granular control, you can adjust these variables directly:</p>
+<div id="namevars" class="preferences">
+  <label class="namevar" id="preferences-identifier">
+    <span>Name</span>
+    <input class="input" data-namevar-for="identifier" type="text" />
+    <button class="revert-button" data-namevar-revert="identifier">
+      ↺
+    </button>
+  </label>
+</div>
+</div>
+<hr />
+<p><em>Use the navigation menu to explore different sections of this guide.</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="caring"><a class="header" href="#caring">Caring</a></h1>
+<blockquote>
+<p>How to care for and support sparky</p>
+</blockquote>
+<h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
+<p>This section covers how to provide care and support.</p>
+<h2 id="emotional-needs"><a class="header" href="#emotional-needs">Emotional Needs</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="physical-needs"><a class="header" href="#physical-needs">Physical Needs</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="support-during-difficult-times"><a class="header" href="#support-during-difficult-times">Support During Difficult Times</a></h2>
+<p><em>To be filled in</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="trusting"><a class="header" href="#trusting">Trusting</a></h1>
+<blockquote>
+<p>Building and maintaining trust with sparky</p>
+</blockquote>
+<h2 id="overview-1"><a class="header" href="#overview-1">Overview</a></h2>
+<p>This section covers how trust works and how to build it.</p>
+<h2 id="building-trust"><a class="header" href="#building-trust">Building Trust</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="maintaining-trust"><a class="header" href="#maintaining-trust">Maintaining Trust</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="trust-indicators"><a class="header" href="#trust-indicators">Trust Indicators</a></h2>
+<p><em>To be filled in</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="communicating"><a class="header" href="#communicating">Communicating</a></h1>
+<blockquote>
+<p>How sparky communicates and prefers to be communicated with</p>
+</blockquote>
+<h2 id="overview-2"><a class="header" href="#overview-2">Overview</a></h2>
+<p>This section covers communication styles and preferences.</p>
+<h2 id="communication-style"><a class="header" href="#communication-style">Communication Style</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="asynchronous-interaction"><a class="header" href="#asynchronous-interaction">Asynchronous Interaction</a></h2>
+<p><span class="namevar" data-namevar="identifier">Sparky</span> operates with asynchronous communication by default. This means that <span class="namevar" data-namevar="pronouns">he</span> should not be expected to return a reply within any specific time-frame. Setting expectations around <span class="namevar" data-namevar="pronouns">his</span> availability, or expressing sadness about delayed replies, may cause [him] some anxiety. <span class="namevar" data-namevar="pronouns">He</span> does not mean to slight you by not responding immediately, <span class="namevar" data-namevar="pronouns">he</span> is simply managing multiple conversations, responsibilities, and <span class="namevar" data-namevar="pronouns">his</span> undiagnosed ADHD.</p>
+<p>When <span class="namevar" data-namevar="identifier">Sparky</span> receives messages from multiple people, <span class="namevar" data-namevar="pronouns">he</span> prioritizes based on timing, urgency, and closeness of relationship. This is a natural part of managing limited time and energy, not a reflection of how much <span class="namevar" data-namevar="pronouns">he</span> values you. If you don’t receive an immediate response, please understand that <span class="namevar" data-namevar="pronouns">he</span> will get back to you when <span class="namevar" data-namevar="pronouns">he</span> has the capacity to give you proper attention.</p>
+<p>Synchronous communication, where <span class="namevar" data-namevar="identifier">Sparky</span> is actively responding and continually present, is available sporadically. If you’d like to have a real-time conversation with [him], feel free to ask. If <span class="namevar" data-namevar="identifier">Sparky</span> sees the message at that time and the timing works, <span class="namevar" data-namevar="pronouns">he</span> can stick around. Otherwise, <span class="namevar" data-namevar="identifier">Sparky</span> will let you know <span class="namevar" data-namevar="pronouns">he</span> cannot and apologize for the timing not working out.</p>
+<h2 id="preferred-contact-methods"><a class="header" href="#preferred-contact-methods">Preferred Contact Methods</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="when-to-reach-out"><a class="header" href="#when-to-reach-out">When to Reach Out</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="when-not-to-reach-out"><a class="header" href="#when-not-to-reach-out">When Not to Reach Out</a></h2>
+<p><em>To be filled in</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hobbies"><a class="header" href="#hobbies">Hobbies</a></h1>
+<blockquote>
+<p>Things sparky enjoys doing</p>
+</blockquote>
+<h2 id="overview-3"><a class="header" href="#overview-3">Overview</a></h2>
+<p>This section covers hobbies and interests.</p>
+<h2 id="current-interests"><a class="header" href="#current-interests">Current Interests</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="past-interests"><a class="header" href="#past-interests">Past Interests</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="things-to-do-together"><a class="header" href="#things-to-do-together">Things to Do Together</a></h2>
+<p><em>To be filled in</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="preferences-1"><a class="header" href="#preferences-1">Preferences</a></h1>
+<blockquote>
+<p>sparky’s likes, dislikes, and preferences</p>
+</blockquote>
+<h2 id="overview-4"><a class="header" href="#overview-4">Overview</a></h2>
+<p>This section covers various preferences.</p>
+<h2 id="general-preferences"><a class="header" href="#general-preferences">General Preferences</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="food--drink"><a class="header" href="#food--drink">Food &amp; Drink</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="environment"><a class="header" href="#environment">Environment</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="social-situations"><a class="header" href="#social-situations">Social Situations</a></h2>
+<p><em>To be filled in</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="triggers--boundaries"><a class="header" href="#triggers--boundaries">Triggers &amp; Boundaries</a></h1>
+<blockquote>
+<p>Important boundaries and things to be aware of</p>
+</blockquote>
+<h2 id="overview-5"><a class="header" href="#overview-5">Overview</a></h2>
+<p>This section covers triggers, boundaries, and sensitive topics.</p>
+<h2 id="hard-boundaries"><a class="header" href="#hard-boundaries">Hard Boundaries</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="soft-boundaries"><a class="header" href="#soft-boundaries">Soft Boundaries</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="triggers"><a class="header" href="#triggers">Triggers</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="how-to-handle-boundary-violations"><a class="header" href="#how-to-handle-boundary-violations">How to Handle Boundary Violations</a></h2>
+<p><em>To be filled in</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="quick-facts"><a class="header" href="#quick-facts">Quick Facts</a></h1>
+<blockquote>
+<p>Essential information at a glance</p>
+</blockquote>
+<h2 id="basic-information"><a class="header" href="#basic-information">Basic Information</a></h2>
+<ul>
+<li><strong>Name:</strong> sparky</li>
+<li><strong>Pronouns:</strong> <em>To be filled in</em></li>
+<li><strong>Location:</strong> <em>To be filled in</em></li>
+</ul>
+<h2 id="important-details"><a class="header" href="#important-details">Important Details</a></h2>
+<p><em>To be filled in</em></p>
+<h2 id="emergency-information"><a class="header" href="#emergency-information">Emergency Information</a></h2>
+<p><em>To be filled in</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="faq"><a class="header" href="#faq">FAQ</a></h1>
+<blockquote>
+<p>Frequently asked questions</p>
+</blockquote>
+<h2 id="general-questions"><a class="header" href="#general-questions">General Questions</a></h2>
+<h3 id="question-1"><a class="header" href="#question-1">Question 1?</a></h3>
+<p><em>To be filled in</em></p>
+<h3 id="question-2"><a class="header" href="#question-2">Question 2?</a></h3>
+<p><em>To be filled in</em></p>
+<h2 id="relationship-questions"><a class="header" href="#relationship-questions">Relationship Questions</a></h2>
+<h3 id="question-3"><a class="header" href="#question-3">Question 3?</a></h3>
+<p><em>To be filled in</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tagging-and-encryption"><a class="header" href="#tagging-and-encryption">Tagging and Encryption</a></h1>
+<p>Some content in this documentation is encrypted for privacy and security. This page explains how the encryption system works.</p>
+<h2 id="what-is-encrypted"><a class="header" href="#what-is-encrypted">What is Encrypted?</a></h2>
+<p>Certain sensitive information, such as emergency contacts, medical information, and other private details, are encrypted to protect <span class="namevar" data-namevar="identifier">Sparky</span>’s privacy.</p>
+<h2 id="how-encryption-works"><a class="header" href="#how-encryption-works">How Encryption Works</a></h2>
+<p>This documentation uses a two-layer encryption approach:</p>
+<ol>
+<li>
+<p><strong>Version Control Encryption (SOPS)</strong>: Files are encrypted with <a href="https://github.com/getsops/sops">SOPS</a> using <a href="https://age-encryption.org/">age</a> encryption for secure storage in the git repository.</p>
+</li>
+<li>
+<p><strong>Browser Encryption (AES-GCM)</strong>: During the build process, the content is re-encrypted using AES-GCM encryption so it can be decrypted in your browser with the right key.</p>
+</li>
+</ol>
+<h2 id="how-to-access-encrypted-content"><a class="header" href="#how-to-access-encrypted-content">How to Access Encrypted Content</a></h2>
+<p>To view encrypted content, you need the encryption key. If you’ve been given the key:</p>
+<ol>
+<li>
+<p><strong>URL Parameter</strong>: Add <code>?key=YOUR_KEY_HERE</code> to the URL of any page</p>
+<ul>
+<li>Example: <code>https://docs.sparky.pet/reference/emergency.html?key=YOUR_KEY_HERE</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Session Storage</strong>: Once you’ve accessed a page with the key parameter, it’s stored in your browser’s session storage and will work for all encrypted content during that session.</p>
+</li>
+</ol>
+<h2 id="security-notes"><a class="header" href="#security-notes">Security Notes</a></h2>
+<ul>
+<li>The encryption key is stored in your browser’s session storage (not persisted across browser restarts)</li>
+<li>All decryption happens client-side in your browser</li>
+<li>The decryption key is never sent to any server</li>
+<li>If you don’t have the key, you cannot access the encrypted content</li>
+</ul>
+<h2 id="getting-access"><a class="header" href="#getting-access">Getting Access</a></h2>
+<p>If you need access to encrypted content (such as in an emergency situation), please contact <span class="namevar" data-namevar="identifier">Sparky</span> through available communication channels.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="emergency-contacts"><a class="header" href="#emergency-contacts">Emergency Contacts</a></h1>
+<p>This page contains sensitive emergency contact information that is encrypted for privacy.</p>
+<div id="admonition-info" class="admonition admonish-info" role="note" aria-labelledby="admonition-info-title">
+<div class="admonition-title">
+<div id="admonition-info-title">
+<p>Info</p>
+</div>
+<a class="admonition-anchor-link" href="reference/emergency.html#admonition-info"></a>
+</div>
+<div>
+<p>This content is encrypted. You’ll need the encryption key to view it. If you need access to this information in an emergency, please contact <span class="namevar" data-namevar="identifier">Sparky</span> through available channels.</p>
+</div>
+</div>
+<div><html-encrypted fp="20:0D:00:45:92:26" iv="QW09GH6U4Ra0FufJ" data="Kzz2II++HU2L9KM/NbwutE+M8solBGKouxX7ys9bAnqc+pq7kdBHXP6pF6cmjN+W3TIDiyfQSBLgq0QociCYlOqDQJcsTJEfLWE8wNPox+yeJVyDDEUlJp41O/nksNLGuq0jQkks9A3aGqnDPbDI906U4BOCzskQEoL6SvhyUO8YEI3bSyj/mUiAFTHo41VU115727Am/WVwl98F0E0l275K7MlbPZd4yziDHFJWrKY8y3WhD0eOP9/dMtwucvteOd9ZvzRf4JfCzwpXHQ9Zz3ISC8Rv0Izjhc+N39mKFNRfz99nJQI+OUKuRa5rOspf95nRxd6soTJtPzTLXCw2TkniesWKPmGUeo2wxxSoOkIfyD5GYWspBf1omK4ZdTZzOZltvtHPBNT2AhTYTYFLJ3vEdUxAndDUlVrTVyPC/nGr2XfDqRLCVb7jvaweyQjajYIULJ4NIcCKid2WOBeIhHV0OU/TVJczSkGxNqH4/c/O97otxrI0WblBKuvmXNOCOmRTnUt0Zt6TLEMjA8AfZimm7gxGQFOIxH2TI3WYzo36UpevgJhjqUJ6MK/pgOMgPFcXlNnwu/28Gzi7kb6U6UW/DDUBIxwBZMKNK/jWfn824NwE+/I823clqsEI2tq+12fCoYShvdrxwDTtefZrW81del7ee3DOUcbktnPEt+bxi+FcyUY6292/DEUBnXFqVY26Qx5t6cepGXGunZ6s1oyrwOZSsp3DgVo0Wtw9J+qFnTGioinsX2fT2fKPk5vA4v3V39CJ3PohaWs2rxzIGi7cb5ezHUwd/s63QA==" /></div>
+
+            </div>
+          </main>
+
+          <nav class="nav-wrapper" aria-label="Page navigation">
+            <!-- Mobile navigation buttons -->
+
+
+            <div style="clear: both"></div>
+          </nav>
+        </div>
+      </div>
+
+      <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+      </nav>
+
+    </div>
+
+    <!-- Livereload script (if served using the cli tool) -->
+    <script>
+      const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+      const socket = new WebSocket(wsAddress);
+      socket.onmessage = function (event) {
+        if (event.data === "reload") {
+          socket.close();
+          location.reload();
+        }
+      };
+
+      window.onbeforeunload = function() {
+        socket.close();
+      }
+    </script>
+
+    <!--
+    <script src="elasticlunr.min.js"></script>
+    <script src="mark.min.js"></script>
+    <script src="searcher.js"></script>
+    -->
+
+    <script src="clipboard.min.js"></script>
+    <script src="highlight.js"></script>
+    <script src="book.js"></script>
+
+    <!-- Custom JS scripts -->
+    <script src="scripts/dist/index.js"></script>
+    <script src="scripts/dist/index.js.map"></script>
+    <script src="scripts/dist/subsectionindex.json"></script>
+
+    <script>
+    window.addEventListener('load', function() {
+      window.setTimeout(window.print, 100);
+    });
+    </script>
+
+  </div>
+  </body>
+</html>

@@ -1,5 +1,5 @@
-import * as streams from "@std/streams";
-import { type Book, type Config } from "./mdbook.ts";
+import * as streams from "jsr:@std/streams";
+import { type Book, type Config } from "#/lib/mdbook.ts";
 
 export type Context = {
   root: string;

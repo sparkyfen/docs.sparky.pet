@@ -1,0 +1,19 @@
+[1;91m[0m[1;91mFAQ[0m
+
+    [93m  | [0mFrequently asked questions
+
+[1;36m## [0m[1;36mGeneral Questions[0m
+
+[1;36m### [0m[1;36mQuestion 1?[0m
+
+    [3mTo be filled in[0m
+
+[1;36m### [0m[1;36mQuestion 2?[0m
+
+    [3mTo be filled in[0m
+
+[1;36m## [0m[1;36mRelationship Questions[0m
+
+[1;36m### [0m[1;36mQuestion 3?[0m
+
+    [3mTo be filled in[0m

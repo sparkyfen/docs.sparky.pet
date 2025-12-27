@@ -1,0 +1,328 @@
+import { assert } from "jsr:@std/assert@0";
+import { forAllElements, html, isElement } from "#/scripts/element.ts";
+
+export type Namevar = {
+  // namevar is the name of the namevar.
+  // It must be unique among all namevars.
+  namevar: string;
+  // options is a list of options presented to the user.
+  options: string[];
+  // preprocessMatcher is used to match the Markdown content for preprocess().
+  preprocessMatcher: RegExp;
+  // preprocess is called on the Markdown content to transform matched strings
+  // into namevar span tags.
+  preprocess: (match: string) => () => string;
+  // replace is called on the namevar span tag to replace the value.
+  // It is executed at runtime.
+  replace: (content: string, option: string, element: HTMLElement) => string;
+};
+
+function preserveCase(original: string, replace: string): string {
+  // First-letter capitalization.
+  if (original[0].toUpperCase() == original[0]) {
+    return replace[0].toUpperCase() + replace.slice(1);
+  }
+  // All caps.
+  if (original == original.toUpperCase()) {
+    return replace.toUpperCase();
+  }
+  // Lowercase.
+  return replace;
+}
+
+export const namevars: Namevar[] = [
+  {
+    namevar: "identifier",
+    options: ["Sparky", "Adam"],
+    preprocessMatcher: /\\?Sparky|\[Sparky\]/g,
+    preprocess: (match) =>
+      match.startsWith("\\") // keep format
+        ? () => match.slice(1)
+        : html`
+            <span class="namevar" data-namevar="identifier">Sparky</span>
+          `,
+    // Return the option as is, since the span value is constant.
+    replace: (_: string, option: string) => option,
+  },
+  {
+    namevar: "pronouns",
+    options: ["he/him/his"],
+    preprocessMatcher:
+      /\[(he|he2|he3|his|himself|he\/him)\]/gi,
+    preprocess: (match) => {
+      match = match.slice(1, -1);
+
+      let pronoun = match.toLowerCase();
+      pronoun = pronoun.replace("he3", "his");
+      pronoun = preserveCase(match, pronoun);
+
+      return html`
+        <span class="namevar" data-namevar="pronouns">${pronoun}</span>
+      `;
+    },
+    replace: (content: string, option: string) => {
+      const pronoun = content.toLowerCase();
+      const replace = {
+        "he/him/himself": {
+          he2: "he",
+          he3: "his",
+          he: "he",
+          him: "him",
+          his: "his",
+          himself: "himself",
+          "he's": "he's",
+          "he/him": "he/him",
+        }[pronoun],
+      }[option];
+      return replace ? preserveCase(content, replace) : content;
+    },
+  },
+];
+
+export const presets = {
+  default: {
+    identifier: "Sparky",
+    pronouns: "he/him",
+  },
+  professional: {
+    identifier: "Adam",
+    pronouns: "he/him",
+  }
+};
+
+function currentPreset(): keyof typeof presets | null {
+  const namevarValues: Record<string, string> = {};
+  for (const namevar of namevars) {
+    namevarValues[namevar.namevar] = namevarValue(namevar);
+  }
+
+  for (const [preset, values] of Object.entries(presets)) {
+    if (
+      Object.entries(values).every(
+        ([namevar, value]) => namevarValues[namevar] === value,
+      )
+    ) {
+      return preset as keyof typeof presets;
+    }
+  }
+
+  return null;
+}
+
+function findNamevar(namevar: string): Namevar {
+  const n = namevars.find((n) => n.namevar == namevar);
+  if (!n) {
+    throw new Error(`Unknown namevar: ${namevar}`);
+  }
+  return n;
+}
+
+function namevarValue(namevar: Namevar): string {
+  return (
+    localStorage.getItem(`namevar-v1-${namevar.namevar}`) || namevar.options[0]
+  );
+}
+
+function saveNamevar(namevar: Namevar, option: string) {
+  localStorage.setItem(`namevar-v1-${namevar.namevar}`, option);
+  applyNamevar(namevar, option);
+}
+
+function applyNamevar(namevar: Namevar, option: string, parent?: Element) {
+  forAllElements({
+    selector: `span.namevar[data-namevar=${CSS.escape(namevar.namevar)}]`,
+    element: HTMLSpanElement,
+    parent,
+    apply: (e) => {
+      const oldValue = e.textContent;
+      const newValue = namevar.replace(oldValue || "", option, e);
+
+      e.textContent = newValue;
+      e.dataset.namevarValue = option;
+
+      if (oldValue != newValue) {
+        e.classList.add("changed");
+        setTimeout(() => e.classList.remove("changed"), 100);
+      }
+    },
+  });
+
+  forAllElements({
+    selector: `.input[data-namevar-for=${CSS.escape(namevar.namevar)}]`,
+    parent,
+    apply: (e) => {
+      if (isElement(e, HTMLInputElement) || isElement(e, HTMLSelectElement)) {
+        e.value = option;
+      }
+    },
+  });
+
+  updatePresets(parent);
+}
+
+function updatePresets(parent?: Element) {
+  const preset = currentPreset();
+  forAllElements({
+    selector: `.preset input[name="preset"]`,
+    element: HTMLInputElement,
+    parent,
+    apply: (e) => {
+      e.checked = preset === e.value;
+    },
+  });
+}
+
+function applyAllNamevars(parent?: Element) {
+  for (const namevar of namevars) {
+    const storageKey = `namevar-v1-${namevar.namevar}`;
+
+    let option = localStorage.getItem(storageKey);
+    if (!option) {
+      // Set the first option as the default.
+      option = namevar.options[0];
+      localStorage.setItem(storageKey, option);
+    }
+
+    applyNamevar(namevar, option, parent);
+  }
+}
+
+const datalists: Record<string, HTMLDataListElement> = {};
+
+function makeOptions(namevar: Namevar): HTMLOptionElement[] {
+  return namevar.options.map((option) => {
+    const optionElement = document.createElement("option");
+    optionElement.value = option;
+    optionElement.textContent = option;
+    return optionElement;
+  });
+}
+
+function makeDatalist(namevar: Namevar): HTMLDataListElement {
+  let datalist = datalists[namevar.namevar];
+  if (datalist) {
+    return datalist;
+  }
+
+  datalist = document.createElement("datalist");
+  datalist.id = `namevar-datalist-${namevar.namevar}`;
+  datalist.append(...makeOptions(namevar));
+
+  document.body.append(datalist);
+  datalists[namevar.namevar] = datalist;
+
+  return datalist;
+}
+
+function assertNamevarNotBound(e: HTMLElement) {
+  if (e.dataset.namevarBound) {
+    throw new Error("Element is already bound to a namevar");
+  }
+  e.dataset.namevarBound = "true";
+}
+
+function bindNamevarInputs(parent?: Element) {
+  forAllElements({
+    selector: `input.input[data-namevar-for]`,
+    element: HTMLInputElement,
+    parent,
+    apply: (e) => {
+      assertNamevarNotBound(e);
+      assert(e.dataset.namevarFor, "Missing data-namevar-for");
+
+      const namevar = findNamevar(e.dataset.namevarFor);
+
+      const datalist = makeDatalist(namevar);
+
+      e.setAttribute("list", datalist.id);
+      e.value = namevarValue(namevar);
+      e.addEventListener("change", () => saveNamevar(namevar, e.value));
+      e.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter") {
+          saveNamevar(namevar, e.value);
+          e.blur();
+        }
+      });
+    },
+  });
+
+  forAllElements({
+    selector: `select.input[data-namevar-for]`,
+    element: HTMLSelectElement,
+    parent,
+    apply: (e) => {
+      assertNamevarNotBound(e);
+      assert(e.dataset.namevarFor, "Missing data-namevar-for");
+
+      const namevar = findNamevar(e.dataset.namevarFor);
+
+      makeOptions(namevar).forEach((option) => e.appendChild(option));
+      e.value = namevarValue(namevar);
+      e.addEventListener("change", () => saveNamevar(namevar, e.value));
+    },
+  });
+
+  forAllElements({
+    selector: `button.revert-button[data-namevar-revert]`,
+    element: HTMLButtonElement,
+    parent,
+    apply: (e) => {
+      assertNamevarNotBound(e);
+      assert(e.dataset.namevarRevert, "Missing data-namevar-revert");
+
+      const namevar = findNamevar(e.dataset.namevarRevert);
+
+      e.addEventListener("click", () => {
+        e.blur();
+        saveNamevar(namevar, namevar.options[0]);
+      });
+    },
+  });
+
+  forAllElements({
+    selector: `.preset input[name="preset"]`,
+    element: HTMLInputElement,
+    parent,
+    apply: (e) => {
+      assertNamevarNotBound(e);
+      e.addEventListener("change", () => {
+        if (!e.checked) {
+          return;
+        }
+
+        const preset = presets[e.value as keyof typeof presets];
+        if (!preset) {
+          throw new Error(`Unknown preset: ${e.value}`);
+        }
+
+        for (const [namevar, value] of Object.entries(preset)) {
+          const n = findNamevar(namevar);
+          saveNamevar(n, value);
+        }
+      });
+    },
+  });
+}
+
+// apply is the main function to apply all namevars.
+// It is idempotent and can be called multiple times but will properly handle
+// new elements.
+export function apply(parent?: Element) {
+  applyAllNamevars(parent);
+  bindNamevarInputs(parent);
+  updatePresets(parent);
+}
+
+export function preprocessNamevar(namevar: Namevar, content: string): string {
+  return content.replace(
+    namevar.preprocessMatcher,
+    (match) => namevar.preprocess(match)().trim(),
+  );
+}
+
+export function preprocessAllNamevars(content: string): string {
+  for (const namevar of namevars) {
+    content = preprocessNamevar(namevar, content);
+  }
+  return content;
+}

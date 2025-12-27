@@ -1,5 +1,5 @@
-import { generateKey } from "./encryption.ts";
-import { sopsDecrypt, sopsEncryptTo } from "./sops.ts";
+import { generateKey } from "#/lib/encryption.ts";
+import { sopsDecrypt, sopsEncryptTo } from "#/lib/sops.ts";
 
 const keyPath =
   new URL("../src/encrypted/encryption-key.json", import.meta.url).pathname;

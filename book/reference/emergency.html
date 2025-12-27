@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html lang="en" class="coal" dir="ltr">
+  <head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <title>Emergency Contacts - User Guide for Sparky</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta name="description" content="This user guide is designed to help you understand the basics of operating, interacting with, and using Sparky. These docs are maintained by Sparky himself.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="og:title" content="Emergency Contacts - User Guide for Sparky">
+    <meta name="og:description" content="This user guide is designed to help you understand the basics of operating, interacting with, and using Sparky. These docs are maintained by Sparky himself.">
+
+    <link rel="icon" href="../favicon.svg">
+
+    <link rel="shortcut icon" href="../favicon.png">
+
+    <!-- Normalize.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@3.0.0/modern-normalize.min.css">
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/chrome.css">
+
+    <link rel="stylesheet" href="../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../highlight.css">
+    <link rel="stylesheet" href="../tomorrow-night.css">
+    <link rel="stylesheet" href="../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../theme/mdbook-admonish.css">
+    <link rel="stylesheet" href="../theme/dist/styles.css">
+  </head>
+  <body class="sidebar-visible no-js">
+  <div id="body-container">
+    <!-- Provide site root to javascript -->
+    <script>
+      var path_to_root = "../";
+      var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "coal";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script>
+      try {
+        var theme = localStorage.getItem('mdbook-theme');
+        var sidebar = localStorage.getItem('mdbook-sidebar');
+
+        if (theme.startsWith('"') && theme.endsWith('"')) {
+          localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+        }
+
+        if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+          localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+        }
+      } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script>
+      var theme;
+      try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+      if (theme === null || theme === undefined) { theme = default_theme; }
+      var html = document.querySelector('html');
+      html.classList.remove('coal')
+      html.classList.add(theme);
+      var body = document.querySelector('body');
+      body.classList.remove('no-js')
+      body.classList.add('js');
+    </script>
+
+    <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+    <script>
+      (function() {
+        let body = document.querySelector('body');
+        let sidebar = null;
+        let sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+
+        function updateSidebar() {
+          sidebar = document.body.clientWidth >= 1080 ? 'visible' : 'hidden';
+          sidebar_toggle.checked = sidebar === 'visible';
+          body.classList.remove('sidebar-visible');
+          body.classList.remove('sidebar-hidden');
+          body.classList.add("sidebar-" + sidebar);
+          body.classList.toggle("sidebar-collapsible", sidebar == 'hidden')
+        }
+
+        updateSidebar();
+        window.addEventListener('resize', updateSidebar);
+      })()
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+      <div class="sidebar-scrollbox">
+        <ol class="chapter"><li class="chapter-item affix "><a href="../index.html">Introduction</a></li><li class="chapter-item affix "><li class="part-title">Interacting</li><li class="chapter-item "><a href="../interacting/caring.html"><strong aria-hidden="true">1.</strong> Caring</a></li><li class="chapter-item "><a href="../interacting/trusting.html"><strong aria-hidden="true">2.</strong> Trusting</a></li><li class="chapter-item "><a href="../interacting/communicating.html"><strong aria-hidden="true">3.</strong> Communicating</a></li><li class="chapter-item affix "><li class="part-title">Personal</li><li class="chapter-item "><a href="../personal/hobbies.html"><strong aria-hidden="true">4.</strong> Hobbies</a></li><li class="chapter-item "><a href="../personal/preferences.html"><strong aria-hidden="true">5.</strong> Preferences</a></li><li class="chapter-item "><a href="../personal/boundaries.html"><strong aria-hidden="true">6.</strong> Triggers & Boundaries</a></li><li class="chapter-item affix "><li class="part-title">Reference</li><li class="chapter-item "><a href="../reference/quick-facts.html"><strong aria-hidden="true">7.</strong> Quick Facts</a></li><li class="chapter-item "><a href="../reference/faq.html"><strong aria-hidden="true">8.</strong> FAQ</a></li><li class="chapter-item "><a href="../reference/tagging-encryption.html"><strong aria-hidden="true">9.</strong> Tagging and Encryption</a></li><li class="chapter-item expanded "><a href="../reference/emergency.html" class="active"><strong aria-hidden="true">10.</strong> Emergency Contacts</a></li></ol>
+      </div>
+      <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+        <div class="sidebar-resize-indicator"></div>
+      </div>
+    </nav>
+
+    <!-- Track and set sidebar scroll position -->
+    <script>
+      var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+      sidebarScrollbox.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') {
+          sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+        }
+      }, { passive: true });
+
+      var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+      sessionStorage.removeItem('sidebar-scroll');
+      if (sidebarScrollTop) {
+        // preserve sidebar scroll position when navigating via links within sidebar
+        sidebarScrollbox.scrollTop = sidebarScrollTop;
+      } else {
+        // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+        var activeSection = document.querySelector('#sidebar .active');
+        if (activeSection) {
+          activeSection.scrollIntoView({ block: 'center' });
+        }
+      }
+    </script>
+
+    <dialog id="content-alert" open>
+      <div class="warning">
+        <p class="title"><strong>Warning</strong>:</p>
+        <p>This guide contains sensitive information about Diamond that may be considered
+        mature, explicit/18+, or triggering. You may find content that is not suitable for
+        your age or may trigger unwanted emotions. <strong>Please proceed with caution.</strong></p>
+        <p><strong>Consent is important.</strong> If you are unsure about something, it is always best
+        to ask Diamond directly.</p>
+        <p><strong>Trigger warning</strong>: sexually explicit content, self-harm, mental health issues,
+        dubious consent, and more.</p>
+        <p class="require-javascript">By continuing, you acknowledge that you have read and understood this warning.</p>
+
+        <noscript>
+          <hr>
+
+          <strong>JavaScript is disabled in your browser.</strong>
+          <p>This book contains interactive content that requires JavaScript to
+          function properly. Unfortunately, you will not be able to view this content
+          without enabling JavaScript.</p>
+        </noscript>
+      </div>
+
+      <footer class="require-javascript">
+        <button id="content-alert-back" class="primary-button" title="Go back" aria-label="Go back" onclick="respondContentAlert(false)">
+          <i class="fa fa-arrow-left"></i>
+          <span>Go back</span>
+        </button>
+        <button id="content-alert-continue" title="Continue" aria-label="Continue" onclick="respondContentAlert(true)">
+          <span>Continue</span>
+          <span id="content-alert-countdown"></span>
+          <i class="fa fa-arrow-right"></i>
+        </button>
+      </footer>
+    </dialog>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+      <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+        <div id="menu-bar" class="menu-bar sticky">
+          <div class="left-buttons">
+            <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+              <i class="fa fa-bars"></i>
+            </label>
+            <a role="button" href="../" title="Home" aria-label="Home">
+              <i class="fa fa-home"></i>
+            </a>
+          </div>
+
+          <div class="center menu-title"></div>
+
+          <div class="right-buttons">
+            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+              <i class="fa fa-paint-brush"></i>
+            </button>
+            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+              <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+            </ul>
+            <a href="https://github.com/sparkyfen/docs.sparky.pet" title="Git repository" aria-label="Git repository">
+              <i id="git-repository-button" class="fa fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div id="shadow-overlay"></div>
+
+        <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+        <script>
+          document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+          document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+          Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+            link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+          });
+        </script>
+
+        <div id="content" class="content">
+          <main>
+            <aside class="toc">
+              <nav class="pagetoc"></nav>
+            </aside>
+            <div class="content-wrap">
+              <h1 id="emergency-contacts"><a class="header" href="#emergency-contacts">Emergency Contacts</a></h1>
+<p>This page contains sensitive emergency contact information that is encrypted for privacy.</p>
+<div id="admonition-info" class="admonition admonish-info" role="note" aria-labelledby="admonition-info-title">
+<div class="admonition-title">
+<div id="admonition-info-title">
+<p>Info</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-info"></a>
+</div>
+<div>
+<p>This content is encrypted. You’ll need the encryption key to view it. If you need access to this information in an emergency, please contact [Sparky] through available channels.</p>
+</div>
+</div>
+<pre><code>  &lt;div class="admonish-warning"&gt;
+    &lt;b&gt;Encryption unavailable:&lt;/b&gt; encryption key not loaded.
+  &lt;/div&gt;
+</code></pre>
+
+            </div>
+          </main>
+
+          <nav class="nav-wrapper" aria-label="Page navigation">
+            <!-- Mobile navigation buttons -->
+              <a rel="prev" href="../reference/tagging-encryption.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+              </a>
+
+
+            <div style="clear: both"></div>
+          </nav>
+        </div>
+      </div>
+
+      <nav class="nav-wide-wrapper" aria-label="Page navigation">
+          <a rel="prev" href="../reference/tagging-encryption.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+            <i class="fa fa-angle-left"></i>
+          </a>
+
+      </nav>
+
+    </div>
+
+    <!-- Livereload script (if served using the cli tool) -->
+    <script>
+      const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+      const socket = new WebSocket(wsAddress);
+      socket.onmessage = function (event) {
+        if (event.data === "reload") {
+          socket.close();
+          location.reload();
+        }
+      };
+
+      window.onbeforeunload = function() {
+        socket.close();
+      }
+    </script>
+
+    <!--
+    <script src="../elasticlunr.min.js"></script>
+    <script src="../mark.min.js"></script>
+    <script src="../searcher.js"></script>
+    -->
+
+    <script src="../clipboard.min.js"></script>
+    <script src="../highlight.js"></script>
+    <script src="../book.js"></script>
+
+    <!-- Custom JS scripts -->
+    <script src="../scripts/dist/index.js"></script>
+    <script src="../scripts/dist/index.js.map"></script>
+    <script src="../scripts/dist/subsectionindex.json"></script>
+
+
+  </div>
+  </body>
+</html>

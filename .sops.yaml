@@ -1,4 +1,7 @@
 creation_rules:
-  - path_regex: src/encrypted/.*
+  - path_regex: .*
+
+    # age recipients:
+    #   - sparky (repository owner)
     age: >-
-      age1wj6kj7ludhpmrm6g0klk28yw6jvz58gg2yzgk3lp0q7wf0tc93xq75k326
+      age1u7g6htlxgav97mtdqpedjzlppu7d4dcg4vuvq229g4ssmn4hfshqdu9kwj

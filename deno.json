@@ -4,10 +4,9 @@
     "noFallthroughCasesInSwitch": true
   },
   "imports": {
-    "#/": "./",
-    "@std/streams": "jsr:@std/streams@^1"
+    "#/": "./"
   },
-  "tasks": {
-    "encrypt": "deno run -A preprocessors/encrypt.ts"
+  "fmt": {
+    "exclude": ["**/*.ts", "**/*.js", "."]
   }
 }

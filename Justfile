@@ -1,52 +1,36 @@
-# Build documentation
-build:
-    #!/usr/bin/env bash
-    if [ -z "$SOPS_AGE_KEY" ] && [ -f "age-key.txt" ]; then
-        export SOPS_AGE_KEY=$(cat age-key.txt | grep "^AGE-SECRET-KEY" | cut -d: -f2 | tr -d ' ')
-    fi
-    mdbook build
-    echo "Documentation built to book/ directory"
+build: clean
+  #!/usr/bin/env bash
+  set -euxo pipefail
 
-# Serve documentation locally with live reload
-serve:
-    #!/usr/bin/env bash
-    if [ -z "$SOPS_AGE_KEY" ] && [ -f "age-key.txt" ]; then
-        export SOPS_AGE_KEY=$(cat age-key.txt | grep "^AGE-SECRET-KEY" | cut -d: -f2 | tr -d ' ')
-    fi
-    mdbook serve --open
+  tmpdir=$(mktemp -d)
+  mdbook build -d "$tmpdir"
 
-# Clean build artifacts
+  cp -r "$tmpdir"/html dist
+
+  mkdir dist/formats
+  cp -r "$tmpdir"/markdown dist/formats/markdown
+  cp -r "$tmpdir"/terminal dist/formats/terminal
+
+  rm -rf "$tmpdir"
+
+serve: clean
+  mdbook serve
+
 clean:
-    mdbook clean
-    @echo "Build artifacts cleaned"
+  rm -rf dist
 
-# Watch and rebuild on changes
-watch:
-    mdbook watch
+[group("sops")]
+sops-rotate:
+  ./cmd/sops.sh rotate
 
-# Run tests (check for broken links, etc)
-test:
-    mdbook test
+[group("sops")]
+sops-updatekeys:
+  ./cmd/sops.sh updatekeys
 
-# Format nix files
-fmt-nix:
-    nixfmt flake.nix
-
-# Format all files
-fmt: fmt-nix
-    prettier --write "**/*.{md,json,css,scss,js,ts}"
-    @echo "All files formatted"
-
-# Encryption commands
-
-# Generate a new encryption key
-encryption-keygen:
-    deno run -A -r lib/encryptionkey.ts
-
-# Rotate the encryption key
+[group("encryption")]
 encryption-rotate:
-    deno run -A -r lib/encryptionkey.ts
+  ./cmd/encryption.ts rotate
 
-# Encrypt a file with SOPS
-encrypt FILE:
-    sops --encrypt --in-place {{FILE}}
+[group("encryption")]
+encrypted-url NAME="":
+  ./cmd/encryption.ts url "{{NAME}}"

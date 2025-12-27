@@ -1,3 +1,5 @@
+import { html } from "#/scripts/element.ts";
+
 const KEY_SIZE = 128;
 
 export type Base64<_ extends Uint8Array> = string;
@@ -11,6 +13,8 @@ export async function generateKey(): Promise<CryptoKey> {
   ]);
 }
 
+// encrypt encrypts the given data using the key.
+// The result is an HTML element that can be parsed by the caller.
 export async function encrypt(key: CryptoKey, data: string): Promise<string> {
   const fp = await keyFingerprint(key);
   const iv = await getIV(data);
@@ -24,9 +28,13 @@ export async function encrypt(key: CryptoKey, data: string): Promise<string> {
   const ivStr = encodeBase64(iv);
   const encryptedStr = encodeBase64(encrypted);
 
-  return `<div><html-encrypted fp="${fp}" iv="${ivStr}" data="${encryptedStr}" /></div>`.trim();
+  return html`
+    <div><html-encrypted fp="${fp}" iv="${ivStr}" data="${encryptedStr}" /></div>
+  `().trim();
 }
 
+// decrypt decrypts the given data using the key and iv.
+// HTML parsing is done by the caller.
 export async function decrypt(
   key: CryptoKey,
   iv: Base64<Uint8Array>,
@@ -40,6 +48,8 @@ export async function decrypt(
   return new TextDecoder().decode(decrypted);
 }
 
+// keyFingerprint returns the fingerprint of a key.
+// This fingerprint uniquely identifies the key apart from its name.
 export async function keyFingerprint(key: CryptoKey): Promise<string> {
   if (!key.extractable) {
     throw new Error("Key is not extractable");
@@ -65,6 +75,8 @@ export function decodeBase64(str: Base64<Uint8Array>): Uint8Array {
   return Uint8Array.from(atob(str), (c) => c.charCodeAt(0));
 }
 
+// getIV deterministically generates an IV from the given data.
+// This is required for mdbook.
 async function getIV(data: string): Promise<Uint8Array> {
   const ivLen = 16;
   const nonBase64Len = (ivLen * 3) / 4;

@@ -1,0 +1,69 @@
+:root {
+  --toc-width: 270px;
+  --center-content-toc-shift: calc(-1 * var(--toc-width) / 2);
+}
+
+@media only screen {
+  main {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  aside.toc b {
+    display: block;
+    margin: 1em 0;
+  }
+
+  h1 {
+    margin-block-start: 1.5em;
+  }
+
+  .content-wrap {
+    overflow-y: auto;
+    width: 100%;
+  }
+
+  .sidetoc {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: auto;
+  }
+  .pagetoc {
+    width: 100%;
+    font-size: 0.9em;
+    border-left: 1px solid var(--theme-popup-border);
+  }
+  .pagetoc a {
+    color: var(--fg) !important;
+    display: block;
+    padding: 0.15em 0;
+    padding-left: calc(0.75em * (1 + var(--indent, 0)));
+    text-align: left;
+    text-decoration: none;
+    text-overflow: ellipsis;
+  }
+  .pagetoc a:hover {
+    background: var(--sidebar-bg);
+    color: var(--sidebar-fg) !important;
+  }
+  .pagetoc .pagetoc-H1 {
+    font-weight: bold;
+  }
+  .pagetoc .pagetoc-H2 {
+    --indent: 1;
+  }
+  .pagetoc .pagetoc-H3 {
+    --indent: 2;
+    font-weight: 300;
+  }
+  .pagetoc .pagetoc-H4 {
+    --indent: 3;
+  }
+}
+
+@media print {
+  .sidetoc {
+    display: none;
+  }
+}

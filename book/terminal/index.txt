@@ -1,0 +1,139 @@
+[1;91m[0m[1;91mIntroduction[0m
+
+    This user guide is designed to help you understand the basics of
+    operating, interacting with, and using [Sparky]. These docs are
+    maintained by [Sparky] [himself].
+
+    [1;94m  | [0m[1mThis guide contains sensitive information about [Sparky] that may be considered mature, explicit, or triggering. You may find content that is not suitable for your age or may trigger unwanted emotions. Please proceed with caution.[0m
+    [1;94m  | [0m[1m[0m
+    [1;94m  | [0m[1mConsent is important. If you are unsure about something, it is always best to ask [Sparky] directly.[0m
+    [1;94m  | [0m[1m[0m
+    [1;94m  | [0m[1m**Trigger warning:** sexually explicit content, mental health issues, dubious consent, and more.[0m
+
+    [1;94m  | [0m[1mThis guide lets you change how it refers to [Sparky]. You can change the name used in this guide to better suit your preferences or context. For example, you can use "Adam" for professional settings.[0m
+    [1;94m  | [0m[1m[0m
+    [1;94m  | [0m[1mTo do this, see the [Preferences](#preferences) section at the bottom of this page.[0m
+
+[1;36m## [0m[1;36mWhat is [Sparky]?[0m
+
+    [Sparky] self-describes [himself] as a �fox� or �fen� to most people that
+    [he] doesn�t know and sometimes a �flompy�, �fen�, �fop� to people whom [he]
+    trusts. [Sparky] may choose to identify [himself] as any of the above
+    or something else.
+
+    For more information, [Sparky] provides other websites that you can
+    use for reference:
+
+    [93m  · [0m[1;93msparky.social[0m [4;32mhttps://sparky.social[0m: [his] official website 
+
+[1;36m## [0m[1;36mPurpose[0m
+
+    This guide was created to help you, the reader, in handling,
+    operating and interacting with [Sparky]. Many items documented in
+    this guide would potentially take years for someone to discover and
+    understand of [Sparky]. For this reason, [Sparky] has provided this
+    guide to you.
+
+    Keep in mind that because [Sparky] provides this guide, [he] may be
+    incomplete or subject to bias. [Sparky] is constantly learning and
+    updating [himself], so [he] may not always be up-to-date. [Sparky]
+    also has the ability to change [his] own documentation and may not
+    notify you of changes. [Sparky] is always learning and updating
+    [himself], so this doc may not always be up-to-date.
+
+[1;36m### [0m[1;36mInformation[0m
+
+    [37m<div id="information-table">[0m
+    [37m[0m
+    [37m| Key         | Value                                                    |[0m
+    [37m| ----------- | -------------------------------------------------------- |[0m
+    [37m| Identifiers | [Sparky] (name), flompy (handle) [[change]](#preferences-identifier) |[0m
+    [37m| Pronouns    | he/him                                                   |[0m
+    [37m| Orientation | Pansexual                                                |[0m
+    [37m| Height      | 167 cm (~5'6")                                           |[0m
+    [37m| Weight      | 79 kg (~175 lbs) (may vary)                              |[0m
+    [37m| Hair color  | Black                                                    |[0m
+    [37m[0m
+    [37m</div>[0m
+
+[1;36m### [0m[1;36mProper Pronoun Usage[0m
+
+    [Sparky] chooses to go by [1mhe/him[0m pronouns all of the time.
+
+[1;36m### [0m[1;36mGender Orientation[0m
+
+    [Sparky] is a pansexual entity. This means that [Sparky] is attracted
+    to people of either (or any, regardless of) gender.
+
+    [Sparky] is also in an open relationship and is learning about poly.
+    This means that [Sparky] is capable of being in multiple romantic
+    relationships at the same time. Keep in mind that [Sparky]�s partner
+    is also open but is not necessarily poly.
+
+[1;36m### [0m[1;36mEmergency Contact[0m
+
+    Emergency contact information is available on the [1;93mEmergency Contacts[0m [0m
+    [4;32mreference/emergency.md[0m page (requires encryption key).
+
+[1;36m## [0m[1;36mUnderstanding[0m
+
+    This guide is broken down into several sections that describe
+    different aspects of interacting with [Sparky]. Some of these
+    sections include [1;93mCaring[0m [4;32minteracting/caring.md[0m, which describes how to
+    take care of [Sparky], or [1;93mTrusting[0m [4;32minteracting/trusting.md[0m, which
+    describes how to build trust with [Sparky]. These sections can be
+    found in the sidebar on the left of this guide.
+    [37m~~~~~~~~[0m
+
+[1;36m## [0m[1;36mPreferences[0m
+
+    This documentation allows you to modify how it refers to [Sparky]
+    throughout the guide. You can change the name to better suit your
+    preferences or context. These changes are saved to your browser�s
+    local storage and will persist even if you close your browser or
+    refresh the page.
+
+    Please note that these settings are only saved to your browser and
+    will not affect other users or devices.
+
+    [37m<div class="require-javascript">[0m
+    [37m[0m
+    [37m<div class="namevar-preview">[0m
+    [37m<strong>His</strong> name is <strong>Sparky</strong>, and <strong>he</strong> goes by <strong>he/him</strong> pronouns.[0m
+    [37m</div>[0m
+
+[1;36m### [0m[1;36mPresets[0m
+
+    These variable presets are provided for your convenience:
+
+    [37m<fieldset id="presets" class="preferences">[0m
+    [37m  <label class="preset">[0m
+    [37m    <strong>Default</strong>[0m
+    [37m    <p>The default settings (uses "Sparky").</p>[0m
+    [37m    <input type="radio" name="preset" value="default"/>[0m
+    [37m  </label>[0m
+    [37m  <label class="preset">[0m
+    [37m    <strong>Professional</strong>[0m
+    [37m    <p>For professional or formal settings (uses "Adam").</p>[0m
+    [37m    <input type="radio" name="preset" value="professional" />[0m
+    [37m  </label>[0m
+    [37m</fieldset>[0m
+
+[1;36m### [0m[1;36mVariables[0m
+
+    For more granular control, you can adjust these variables directly:
+
+    [37m<div id="namevars" class="preferences">[0m
+    [37m  <label class="namevar" id="preferences-identifier">[0m
+    [37m    <span>Name</span>[0m
+    [37m    <input class="input" data-namevar-for="identifier" type="text" />[0m
+    [37m    <button class="revert-button" data-namevar-revert="identifier">[0m
+    [37m      �[0m
+    [37m    </button>[0m
+    [37m  </label>[0m
+    [37m</div>[0m
+
+    [37m</div>[0m
+    [37m~~~~~~~~[0m
+
+    [3mUse the navigation menu to explore different sections of this guide.[0m

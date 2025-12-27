@@ -1,5 +1,7 @@
-import { assertSuccess } from "./cmd.ts";
+import { assertSuccess } from "#/lib/cmd.ts";
 
+// sopsDecrypt decrypts a file encrypted with SOPS and returns the plaintext.
+// If the file is not encrypted, it is returned as is.
 export async function sopsDecrypt(
   path: string,
   { requireEncrypted = false }: { requireEncrypted?: boolean } = {},
@@ -31,13 +33,15 @@ export async function sopsDecrypt(
   }
 }
 
+// sopsEncryptTo encrypts the given content with SOPS and writes it to the given
+// path.
 export async function sopsEncryptTo(
   path: string,
   content: string | Uint8Array,
 ) {
   try {
     const cmd = new Deno.Command("sops", {
-      args: ["encrypt", "--filename-override", path, "--output", path, "/dev/stdin"],
+      args: ["encrypt", "--filename-override", path, "--output", path, "-"],
       stdin: "piped",
       stdout: "null",
       stderr: "inherit",
@@ -58,6 +62,7 @@ export async function sopsEncryptTo(
   }
 }
 
+// sopsIsEncrypted checks if the given file is encrypted with SOPS.
 export async function sopsIsEncrypted(path: string): Promise<boolean> {
   try {
     const cmd = new Deno.Command("sops", {
@@ -69,6 +74,8 @@ export async function sopsIsEncrypted(path: string): Promise<boolean> {
 
     const out = await cmd.output();
     if (!out.success) {
+      // sops will fail if the file isn't JSON or YAML, so we can assume it's
+      // not encrypted in that case.
       return false;
     }
 

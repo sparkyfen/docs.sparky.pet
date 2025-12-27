@@ -1,0 +1,23 @@
+[1;91m[0m[1;91mPreferences[0m
+
+    [93m  | [0msparky�s likes, dislikes, and preferences
+
+[1;36m## [0m[1;36mOverview[0m
+
+    This section covers various preferences.
+
+[1;36m## [0m[1;36mGeneral Preferences[0m
+
+    [3mTo be filled in[0m
+
+[1;36m## [0m[1;36mFood & Drink[0m
+
+    [3mTo be filled in[0m
+
+[1;36m## [0m[1;36mEnvironment[0m
+
+    [3mTo be filled in[0m
+
+[1;36m## [0m[1;36mSocial Situations[0m
+
+    [3mTo be filled in[0m

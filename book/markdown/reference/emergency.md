@@ -1,0 +1,9 @@
+# Emergency Contacts
+
+This page contains sensitive emergency contact information that is encrypted for privacy.
+
+```admonish info
+This content is encrypted. You'll need the encryption key to view it. If you need access to this information in an emergency, please contact [Sparky] through available channels.
+```
+
+<div><html-encrypted fp="20:0D:00:45:92:26" iv="QW09GH6U4Ra0FufJ" data="Kzz2II++HU2L9KM/NbwutE+M8solBGKouxX7ys9bAnqc+pq7kdBHXP6pF6cmjN+W3TIDiyfQSBLgq0QociCYlOqDQJcsTJEfLWE8wNPox+yeJVyDDEUlJp41O/nksNLGuq0jQkks9A3aGqnDPbDI906U4BOCzskQEoL6SvhyUO8YEI3bSyj/mUiAFTHo41VU115727Am/WVwl98F0E0l275K7MlbPZd4yziDHFJWrKY8y3WhD0eOP9/dMtwucvteOd9ZvzRf4JfCzwpXHQ9Zz3ISC8Rv0Izjhc+N39mKFNRfz99nJQI+OUKuRa5rOspf95nRxd6soTJtPzTLXCw2TkniesWKPmGUeo2wxxSoOkIfyD5GYWspBf1omK4ZdTZzOZltvtHPBNT2AhTYTYFLJ3vEdUxAndDUlVrTVyPC/nGr2XfDqRLCVb7jvaweyQjajYIULJ4NIcCKid2WOBeIhHV0OU/TVJczSkGxNqH4/c/O97otxrI0WblBKuvmXNOCOmRTnUt0Zt6TLEMjA8AfZimm7gxGQFOIxH2TI3WYzo36UpevgJhjqUJ6MK/pgOMgPFcXlNnwu/28Gzi7kb6U6UW/DDUBIxwBZMKNK/jWfn824NwE+/I823clqsEI2tq+12fCoYShvdrxwDTtefZrW81del7ee3DOUcbktnPEt+bxi+FcyUY6292/DEUBnXFqVY26Qx5t6cepGXGunZ6s1oyrwOZSsp3DgVo0Wtw9J+qFnTGioinsX2fT2fKPk5vA4v3V39CJ3PohaWs2rxzIGi7cb5ezHUwd/s63QA==" /></div>

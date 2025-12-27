@@ -1,0 +1,17 @@
+[1;91m[0m[1;91mQuick Facts[0m
+
+    [93m  | [0mEssential information at a glance
+
+[1;36m## [0m[1;36mBasic Information[0m
+
+    [93m  · [0m[1mName:[0m sparky 
+    [93m  · [0m[1mPronouns:[0m [3mTo be filled in[0m 
+    [93m  · [0m[1mLocation:[0m [3mTo be filled in[0m 
+
+[1;36m## [0m[1;36mImportant Details[0m
+
+    [3mTo be filled in[0m
+
+[1;36m## [0m[1;36mEmergency Information[0m
+
+    [3mTo be filled in[0m

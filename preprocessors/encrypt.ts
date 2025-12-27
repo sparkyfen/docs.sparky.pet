@@ -1,12 +1,29 @@
 #!/usr/bin/env -S deno run -A
-import { Context, preprocess } from "../lib/mdbook-preprocessor.ts";
-import { encrypt } from "../lib/encryption.ts";
-import { loadKey } from "../lib/encryptionkey.ts";
-import { sopsDecrypt } from "../lib/sops.ts";
-import { chapters } from "../lib/mdbook.ts";
+import { Context, preprocess } from "#/lib/mdbook-preprocessor.ts";
+import { html } from "jsr:@mark/html@1";
+import { encrypt } from "#/lib/encryption.ts";
+import { loadKey } from "#/lib/encryptionkey.ts";
+import { sopsDecrypt } from "#/lib/sops.ts";
+import { preprocessAllNamevars } from "#/scripts/namevar.ts";
+
+// rusty_markdown uses pulldown-cmark which is exactly what mdBook uses.
+// This parser should be compatible with mdBook.
+import * as markdown from "https://deno.land/x/rusty_markdown@v0.4.1/mod.ts";
+import { chapters } from "#/lib/mdbook.ts";
+
+const preprocessors: ((content: string) => string)[] = [
+  //
+  preprocessAllNamevars,
+];
 
 const encryptedRe = /{{#encrypted +([^/\0]+)}}/gm;
-const encryptionKey = await loadKey();
+let encryptionKey: Awaited<ReturnType<typeof loadKey>> | null = null;
+
+try {
+  encryptionKey = await loadKey();
+} catch (error) {
+  console.warn("Encryption key not available, encrypted content will not be processed:", error.message);
+}
 
 async function loadEncryptedContent(
   context: Context,
@@ -19,14 +36,18 @@ async function loadEncryptedContent(
   // plain text.
   let content = await sopsDecrypt(path).catch((e) => {
     console.warn(`Failed to decrypt ${path}:`, e);
-    return `<div class="admonish-error"><b>SOPS error:</b> content unable to be decrypted.</div>`;
+    return html`
+      <div class="admonish-error">
+        <b>SOPS error:</b> content unable to be decrypted.
+      </div>
+    `();
   });
 
   const [_, ext] = name.split(".");
   switch (ext) {
     case "":
     case "txt": {
-      content = `<pre>${content}</pre>`;
+      content = html`<pre>${content}</pre>`();
       break;
     }
     case "html": {
@@ -34,9 +55,10 @@ async function loadEncryptedContent(
       break;
     }
     case "md": {
-      // For now, keep markdown as-is
-      // In the future, we can add markdown processing here
-      content = `<div class="encrypted-markdown">${content}</div>`;
+      for (const f of preprocessors) {
+        content = f(content);
+      }
+      content = markdown.html(markdown.tokens(content));
       break;
     }
     default: {
@@ -46,7 +68,15 @@ async function loadEncryptedContent(
 
   // Re-encrypt the content, this time for rendering instead of for version
   // control.
-  content = await encrypt(encryptionKey, content);
+  if (encryptionKey) {
+    content = await encrypt(encryptionKey, content);
+  } else {
+    content = html`
+      <div class="admonish-warning">
+        <b>Encryption unavailable:</b> encryption key not loaded.
+      </div>
+    `();
+  }
   return content;
 }
 

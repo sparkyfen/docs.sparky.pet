@@ -1,0 +1,45 @@
+{
+  "$version": 2,
+  "base_url": "https://docs.sparky.pet/formats/terminal",
+  "tree": {
+    "personal": {
+      "hobbies.txt": {
+        "size": 378
+      },
+      "preferences.txt": {
+        "size": 460
+      },
+      "boundaries.txt": {
+        "size": 508
+      }
+    },
+    "interacting": {
+      "caring.txt": {
+        "size": 402
+      },
+      "communicating.txt": {
+        "size": 1850
+      },
+      "trusting.txt": {
+        "size": 404
+      }
+    },
+    "index.txt": {
+      "size": 6566
+    },
+    "reference": {
+      "emergency.txt": {
+        "size": 1251
+      },
+      "faq.txt": {
+        "size": 368
+      },
+      "tagging-encryption.txt": {
+        "size": 2205
+      },
+      "quick-facts.txt": {
+        "size": 443
+      }
+    }
+  }
+}

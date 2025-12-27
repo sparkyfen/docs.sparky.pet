@@ -1,0 +1,19 @@
+[1;91m[0m[1;91mHobbies[0m
+
+    [93m  | [0mThings sparky enjoys doing
+
+[1;36m## [0m[1;36mOverview[0m
+
+    This section covers hobbies and interests.
+
+[1;36m## [0m[1;36mCurrent Interests[0m
+
+    [3mTo be filled in[0m
+
+[1;36m## [0m[1;36mPast Interests[0m
+
+    [3mTo be filled in[0m
+
+[1;36m## [0m[1;36mThings to Do Together[0m
+
+    [3mTo be filled in[0m

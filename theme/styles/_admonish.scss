@@ -1,0 +1,55 @@
+.admonition {
+  --admonition-border-radius: var(--border-radius);
+
+  font-size: 0.95em;
+
+  padding: 0;
+
+  border-radius: var(--admonition-border-radius);
+  border-inline-start-width: 0;
+
+  background-color: color-mix(
+    in srgb,
+    var(--sidebar-bg) 50%,
+    transparent
+  ) !important;
+
+  &.admonish-warning {
+    border-width: 0.1rem;
+  }
+
+  &:not(.admonish-warning) {
+    border: 1px solid var(--theme-popup-border) !important;
+  }
+
+  & > .admonition-title {
+    background: none !important;
+
+    width: 100%;
+    min-height: unset !important;
+
+    margin-inline: 0 !important;
+
+    padding-block: 1em !important;
+    padding-inline: 3.25em 1rem !important;
+
+    border-top-left-radius: var(--admonition-border-radius);
+    border-top-right-radius: var(--admonition-border-radius);
+
+    &::before {
+      top: 1em !important;
+      inset-inline-start: 1rem !important;
+
+      width: 1.5em !important;
+      height: 1.5em !important;
+    }
+  }
+
+  & > :not(.admonition-title) {
+    padding-inline: 1rem !important;
+
+    & > p:first-child {
+      margin-top: 0;
+    }
+  }
+}
