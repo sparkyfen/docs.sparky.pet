@@ -19,4 +19,10 @@ await preprocess(async (context) => {
   if (!output.success) {
     throw new Error(`Sass compilation exited with status ${output.code}`);
   }
+
+  // Add cache busting by appending timestamp to CSS content as a comment
+  const cssContent = await Deno.readTextFile(stylesOutput);
+  const timestamp = new Date().toISOString();
+  const cssWithCache = `/* Built: ${timestamp} */\n${cssContent}`;
+  await Deno.writeTextFile(stylesOutput, cssWithCache);
 });
