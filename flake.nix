@@ -2,10 +2,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-
-    libdb.url = "github:sparkyfen/docs.sparky.pet";
-    libdb.inputs.nixpkgs.follows = "nixpkgs";
-    libdb.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs =
@@ -13,7 +9,6 @@
       self,
       nixpkgs,
       flake-utils,
-      libdb,
     }@inputs:
 
     flake-utils.lib.eachDefaultSystem (
