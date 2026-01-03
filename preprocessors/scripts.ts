@@ -1,5 +1,5 @@
 #!/usr/bin/env -S deno run -A
-import * as esbuild from "https://deno.land/x/esbuild@v0.23.0/mod.js";
+import * as esbuild from "https://deno.land/x/esbuild@v0.25.5/mod.js";
 import { denoPlugins } from "jsr:@luca/esbuild-deno-loader@0.10";
 import { preprocess } from "#/lib/mdbook-preprocessor.ts";
 
