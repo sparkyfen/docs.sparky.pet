@@ -1,19 +1,57 @@
 [1;91m[0m[1;91mCaring[0m
 
-    [93m  | [0mHow to care for and support sparky
+    This section documents how Sparky takes care of himself. It includes
+    information on how to maintain Sparky�s physical and mental health, as
+    well as how to provide emotional support to Sparky.
 
-[1;36m## [0m[1;36mOverview[0m
+[1;36m## [0m[1;36mPhysical[0m
 
-    This section covers how to provide care and support.
+[1;36m### [0m[1;36mHygiene[0m
 
-[1;36m## [0m[1;36mEmotional Needs[0m
+    Sparky requires regular maintenance to keep himself clean and
+    functioning properly. To accomplish this, he cleans himself according
+    to the following schedule:
+
+    [93m  · [0m[1mDaily[0m: face wash and moisturize, tooth brush, hair wash &
+        condition, shower. 
+    [93m  · [0m[1mWeekly[0m: exfoliate. 
+
+[1;36m### [0m[1;36mShower[0m
+
+    Sparky�s showering routine can be broken down into two types:
+
+    [93m  · [0m[1mQuick Shower[0m: Sparky takes a quick shower to clean with shampoo,
+        no conditioner, no face cleanser, and clean with body wash. He
+        does this when he needs to be out of the house quickly. This
+        shower typically lasts takes 20-30 minutes. 
+    [93m  · [0m[1mLonger Shower[0m: Sparky takes a longer shower to condition his hair
+        and do face cleanser. He does this once a week. This shower
+        typically lasts 30-45 minutes, including styling and facial
+        regimen, excluding shaving. 
+
+    [1;94m  | [0m[1mThroughout a vacation, Sparky may only take quick showers to save time and not[0m
+    [1;94m  | [0m[1mhave to worry about extra maintenance. You may observe his hair becoming[0m
+    [1;94m  | [0m[1mfrizzy and more flaky as a result.[0m
+
+[1;36m### [0m[1;36mFace Care[0m
+
+    Sparky�s face care routine is essential to maintain his skin�s health
+    and smoothness. His face care routine is fairly simple:
+
+    [93m  · [0m[1mCleansing[0m: Sparky uses a gentle face wash to clean his face. This
+        helps to remove dirt and oil from his skin. 
+    [93m  · [0m[1mShaving[0m: Sparky shaves his face either every day to maintain a
+        specific appearance for their puppy or partner or will leave it
+        for long spans and not shaving to add a layer of depth to their
+        appearance. 
+    [93m  · [0m[1mMoisturizing[0m: Sparky uses a moisturizer to keep [his] skin
+        hydrated. This helps to prevent dryness and maintain [his] skin�s
+        health. 
+
+[1;36m### [0m[1;36mHair Care[0m
 
     [3mTo be filled in[0m
 
-[1;36m## [0m[1;36mPhysical Needs[0m
-
-    [3mTo be filled in[0m
-
-[1;36m## [0m[1;36mSupport During Difficult Times[0m
+[1;36m## [0m[1;36mMental[0m
 
     [3mTo be filled in[0m

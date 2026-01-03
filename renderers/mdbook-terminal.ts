@@ -14,7 +14,6 @@ async function lowdown(markdown: string): Promise<string> {
     stdin: "piped",
     stdout: "piped",
     stderr: "inherit",
-    cwd: Deno.cwd(),
   });
 
   const child = cmd.spawn();
